@@ -34,7 +34,7 @@ export const DonationCard: React.FC<DonationCardProps> = ({ onCopy }) => {
           <div className="relative group">
             <div className="absolute inset-0 bg-[#a50064] rounded-xl blur opacity-30 group-hover:opacity-60 transition-opacity"></div>
             <img
-              src="momo-qr.jpg"
+              src="/momo-qr.jpg"
               alt="Mã QR MoMo Nuôi Hào"
               className="relative w-64 h-64 md:w-80 md:h-80 rounded-xl border-2 border-gray-100 shadow-sm object-contain bg-white p-2"
             />
