@@ -14,18 +14,25 @@ export const DonationCard: React.FC<DonationCardProps> = ({ onCopy }) => {
     content: "NUOI HAO",
   };
 
+  const donationOptions = [
+    { label: "1 ly cà phê", amount: "50.000đ", icon: "☕" },
+    { label: "1 bát phở", amount: "60.000đ", icon: "🍜" },
+    { label: "1 suất cơm văn phòng", amount: "70.000đ", icon: "🍱" },
+    { label: "Combo deadline xuyên đêm", amount: "120.000đ", icon: "⚡" },
+  ];
+
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
     onCopy();
   };
 
   return (
-    <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-10 max-w-4xl w-full border-4 border-[#a50064] relative transform transition-transform hover:scale-[1.01]">
+    <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-10 max-w-6xl w-full border-4 border-[#a50064] relative transform transition-transform hover:scale-[1.01]">
       <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-yellow-900 px-6 py-2 rounded-full font-extrabold shadow-lg uppercase text-sm tracking-wider">
         Khuyến khích chuyển nhiều
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8 items-center">
+      <div className="grid md:grid-cols-3 gap-8 items-start">
         {/* QR Section */}
         <div className="flex flex-col items-center">
           {/* 
@@ -124,6 +131,43 @@ export const DonationCard: React.FC<DonationCardProps> = ({ onCopy }) => {
               <strong>Cảnh báo:</strong> Đừng quên ghi nội dung để Hào biết ai
               donate mà cảm ơn (hoặc không).
             </p>
+          </div>
+        </div>
+
+        {/* Suggestions Section */}
+        <div className="space-y-4">
+          <div className="space-y-3">
+            <p className="text-sm font-semibold text-gray-700 text-center md:text-left">
+              Gợi ý mệnh giá (chạm để sao chép):
+            </p>
+            <div className="grid grid-cols-1 gap-3">
+              {donationOptions.map((option) => (
+                <button
+                  key={option.label}
+                  className="w-full text-left p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md bg-white transition hover:-translate-y-0.5"
+                  onClick={() =>
+                    handleCopy(
+                      `${option.label} - ${option.amount} - ${accountInfo.content}`
+                    )
+                  }
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className="text-xl">{option.icon}</span>
+                      <span className="font-semibold text-gray-800">
+                        {option.label}
+                      </span>
+                    </div>
+                    <span className="text-[#a50064] font-bold">
+                      {option.amount}
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Sao chép: {option.label} | {option.amount}
+                  </p>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
